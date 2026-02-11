@@ -35,6 +35,134 @@
     </script>
 <style>
         .scroll-smooth { scroll-behavior: smooth; }
+        
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* Stagger children */
+        .stagger-children .reveal:nth-child(1) { transition-delay: 0ms; }
+        .stagger-children .reveal:nth-child(2) { transition-delay: 100ms; }
+        .stagger-children .reveal:nth-child(3) { transition-delay: 200ms; }
+        .stagger-children .reveal:nth-child(4) { transition-delay: 300ms; }
+        .stagger-children .reveal:nth-child(5) { transition-delay: 400ms; }
+        .stagger-children .reveal:nth-child(6) { transition-delay: 500ms; }
+        
+        /* Hero text animation */
+        .hero-title {
+            animation: heroSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        }
+        .hero-subtitle {
+            animation: heroSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+        .hero-buttons {
+            animation: heroSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+        }
+        @keyframes heroSlideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Floating animation for decorative elements */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        .float-delayed {
+            animation: float 6s ease-in-out 3s infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Counter animation */
+        .count-up {
+            display: inline-block;
+        }
+        
+        /* Pulse for CTA */
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(232, 114, 42, 0.4); }
+            50% { box-shadow: 0 0 20px 10px rgba(232, 114, 42, 0); }
+        }
+        
+        /* Smooth card hover lift */
+        .card-hover {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+        }
+        
+        /* Navbar scroll effect */
+        .nav-scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        /* Star twinkle */
+        .star-animate {
+            animation: starPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .star-animate:nth-child(1) { animation-delay: 0ms; }
+        .star-animate:nth-child(2) { animation-delay: 80ms; }
+        .star-animate:nth-child(3) { animation-delay: 160ms; }
+        .star-animate:nth-child(4) { animation-delay: 240ms; }
+        .star-animate:nth-child(5) { animation-delay: 320ms; }
+        @keyframes starPop {
+            from { opacity: 0; transform: scale(0) rotate(-30deg); }
+            to { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+        
+        /* Gradient text shimmer for hero */
+        .shimmer {
+            background: linear-gradient(110deg, #E8722A 0%, #FFB347 25%, #E8722A 50%, #FFB347 75%, #E8722A 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-body text-gray-800 dark:text-gray-200 antialiased scroll-smooth">
@@ -79,14 +207,14 @@
 <div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-90"></div>
 </div>
 <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-<h1 class="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 tracking-tight leading-tight">
-                Vakmanschap dat <br/><span class="text-accent">Vertrouwen</span> Bouwt
+<h1 class="hero-title text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 tracking-tight leading-tight">
+                Vakmanschap dat <br/><span class="shimmer">Vertrouwen</span> Bouwt
             </h1>
-<p class="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 font-light">
+<p class="hero-subtitle mt-4 text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 font-light">
                 Uw betrouwbare partner voor stucwerk, renovatie en onderhoud in Rotterdam en omgeving. Kwaliteit gegarandeerd.
             </p>
-<div class="flex flex-col sm:flex-row justify-center gap-4">
-<a class="px-8 py-4 bg-accent text-white font-bold rounded text-lg hover:bg-orange-600 transition-colors shadow-lg shadow-accent/20 font-display" href="#contact">
+<div class="hero-buttons flex flex-col sm:flex-row justify-center gap-4">
+<a class="pulse-glow px-8 py-4 bg-accent text-white font-bold rounded text-lg hover:bg-orange-600 transition-colors shadow-lg shadow-accent/20 font-display" href="#contact">
                     Vraag een Offerte
                 </a>
 <a class="px-8 py-4 border-2 border-white text-white font-bold rounded text-lg hover:bg-white hover:text-primary transition-colors font-display" href="#diensten">
@@ -98,13 +226,13 @@
 <!-- Services Section (Diensten) -->
 <section class="py-24 bg-background-light dark:bg-background-dark" id="diensten">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="text-center mb-16">
+<div class="text-center mb-16 reveal">
 <h2 class="text-accent font-display font-bold uppercase tracking-widest text-sm mb-2">Wat wij doen</h2>
 <h3 class="text-3xl md:text-4xl font-display font-bold text-primary dark:text-white">Onze Expertise</h3>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
 <!-- Service Card 1 -->
-<div class="bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 group border-b-4 border-transparent hover:border-accent">
+<div class="reveal card-hover bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 group border-b-4 border-transparent hover:border-accent">
 <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary dark:text-white group-hover:bg-accent group-hover:text-white transition-colors">
 <span class="material-icons">brush</span>
 </div>
@@ -114,7 +242,7 @@
                     </p>
 </div>
 <!-- Service Card 2 -->
-<div class="bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 group border-b-4 border-transparent hover:border-accent">
+<div class="reveal card-hover bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 group border-b-4 border-transparent hover:border-accent">
 <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary dark:text-white group-hover:bg-accent group-hover:text-white transition-colors">
 <span class="material-icons">format_paint</span>
 </div>
@@ -124,7 +252,7 @@
                     </p>
 </div>
 <!-- Service Card 3 -->
-<div class="bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 group border-b-4 border-transparent hover:border-accent">
+<div class="reveal card-hover bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 group border-b-4 border-transparent hover:border-accent">
 <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary dark:text-white group-hover:bg-accent group-hover:text-white transition-colors">
 <span class="material-icons">grid_view</span>
 </div>
@@ -134,7 +262,7 @@
                     </p>
 </div>
 <!-- Service Card 4 -->
-<div class="bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 group border-b-4 border-transparent hover:border-accent">
+<div class="reveal card-hover bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 group border-b-4 border-transparent hover:border-accent">
 <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary dark:text-white group-hover:bg-accent group-hover:text-white transition-colors">
 <span class="material-icons">handyman</span>
 </div>
@@ -144,7 +272,7 @@
                     </p>
 </div>
 <!-- Service Card 5 -->
-<div class="bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 group border-b-4 border-transparent hover:border-accent">
+<div class="reveal card-hover bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 group border-b-4 border-transparent hover:border-accent">
 <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary dark:text-white group-hover:bg-accent group-hover:text-white transition-colors">
 <span class="material-icons">build</span>
 </div>
@@ -154,7 +282,7 @@
                     </p>
 </div>
 <!-- Service Card 6 -->
-<div class="bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 group border-b-4 border-transparent hover:border-accent">
+<div class="reveal card-hover bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 group border-b-4 border-transparent hover:border-accent">
 <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary dark:text-white group-hover:bg-accent group-hover:text-white transition-colors">
 <span class="material-icons">home_work</span>
 </div>
@@ -171,11 +299,11 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
 <!-- Image Side -->
-<div class="relative mb-12 lg:mb-0">
+<div class="reveal-left relative mb-12 lg:mb-0">
 <div class="relative rounded-lg overflow-hidden shadow-2xl">
 <img alt="Construction professional reviewing renovation plans" class="w-full h-auto object-cover" data-alt="Professional construction site with scaffolding and new structure" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJVcxzFxM_qFzIAI0g4CDBBIHUK3KHmpV0M_rUSe1YuhozC-CqcUT6LfFwjMfe4XLKI_h9EeATCMkjQTxFsqtUAfX0UImCqoghbpDwtYvR3CijCSiToB3Mf1m3D3r5vmP0nMIwDs9sTLaWZzfbrE7l9VeMv4YIwjfTqG2Gsrf0m1B9R6wz27CvBsnwuH86j4qmqMq4ZIp8xmxP1up784COIA28cT0SDTSmhJPA6SmsUnZ9TxsfKFgbqtUmg9iS99cU6Jg8FMgHydVQ"/>
 <!-- Experience Badge -->
-<div class="absolute bottom-0 right-0 bg-accent text-white p-6 rounded-tl-lg">
+<div class="float absolute bottom-0 right-0 bg-accent text-white p-6 rounded-tl-lg">
 <p class="text-4xl font-display font-bold">15+</p>
 <p class="text-sm uppercase tracking-wide">Jaar Ervaring</p>
 </div>
@@ -185,7 +313,7 @@
 <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-accent/10 rounded-full -z-10 blur-xl"></div>
 </div>
 <!-- Content Side -->
-<div>
+<div class="reveal-right">
 <h2 class="text-accent font-display font-bold uppercase tracking-widest text-sm mb-2">Over Slavi Onderhoudsbedrijf</h2>
 <h3 class="text-3xl md:text-4xl font-display font-bold text-primary dark:text-white mb-6">Passie voor Bouwen,<br/>Oog voor Detail</h3>
 <p class="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed">
@@ -195,12 +323,12 @@
                         Onze kracht ligt in de combinatie van traditioneel vakmanschap en moderne technieken. Wij werken netjes, efficiënt en laten uw woning pas achter als u 100% tevreden bent.
                     </p>
 <div class="grid grid-cols-2 gap-8 border-t border-gray-200 dark:border-gray-700 pt-8">
-<div>
-<p class="text-3xl font-display font-bold text-primary dark:text-white mb-1">500+</p>
+<div class="reveal">
+<p class="text-3xl font-display font-bold text-primary dark:text-white mb-1 count-up" data-target="500" data-suffix="+">0</p>
 <p class="text-gray-500 dark:text-gray-400 text-sm">Projecten Afgerond</p>
 </div>
-<div>
-<p class="text-3xl font-display font-bold text-primary dark:text-white mb-1">100%</p>
+<div class="reveal">
+<p class="text-3xl font-display font-bold text-primary dark:text-white mb-1 count-up" data-target="100" data-suffix="%">0</p>
 <p class="text-gray-500 dark:text-gray-400 text-sm">Tevreden Klanten</p>
 </div>
 </div>
@@ -211,13 +339,13 @@
 <!-- Reviews Section -->
 <section class="py-24 bg-background-light dark:bg-background-dark" id="reviews">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="text-center mb-16">
+<div class="text-center mb-16 reveal">
 <h2 class="text-accent font-display font-bold uppercase tracking-widest text-sm mb-2">Reviews</h2>
 <h3 class="text-3xl md:text-4xl font-display font-bold text-primary dark:text-white">Wat klanten zeggen</h3>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-children">
 <!-- Review 1 -->
-<div class="bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm">
+<div class="reveal card-hover bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm">
 <div class="flex text-yellow-400 mb-4">
 <span class="material-icons text-sm">star</span>
 <span class="material-icons text-sm">star</span>
@@ -235,7 +363,7 @@
 </div>
 </div>
 <!-- Review 2 -->
-<div class="bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm">
+<div class="reveal card-hover bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm">
 <div class="flex text-yellow-400 mb-4">
 <span class="material-icons text-sm">star</span>
 <span class="material-icons text-sm">star</span>
@@ -253,7 +381,7 @@
 </div>
 </div>
 <!-- Review 3 -->
-<div class="bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm">
+<div class="reveal card-hover bg-white dark:bg-[#1f2937] p-8 rounded-lg shadow-sm">
 <div class="flex text-yellow-400 mb-4">
 <span class="material-icons text-sm">star</span>
 <span class="material-icons text-sm">star</span>
@@ -280,7 +408,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 <div class="lg:grid lg:grid-cols-2 lg:gap-16">
 <!-- Form Side -->
-<div class="bg-white rounded-lg p-8 shadow-2xl mb-12 lg:mb-0">
+<div class="reveal-left bg-white rounded-lg p-8 shadow-2xl mb-12 lg:mb-0">
 <h3 class="text-2xl font-display font-bold text-primary mb-6">Neem Contact Op</h3>
 <form action="#" class="space-y-6">
 <div>
@@ -307,7 +435,7 @@
 </form>
 </div>
 <!-- Info Side -->
-<div class="text-white flex flex-col justify-center">
+<div class="reveal-right text-white flex flex-col justify-center">
 <h2 class="text-accent font-display font-bold uppercase tracking-widest text-sm mb-2">Contactgegevens</h2>
 <h3 class="text-4xl font-display font-bold mb-6">Klaar voor de start?</h3>
 <p class="text-gray-300 mb-10 text-lg">
@@ -388,4 +516,84 @@
 </div>
 </div>
 </footer>
+<script>
+// Scroll Reveal Observer
+const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+revealElements.forEach(el => revealObserver.observe(el));
+
+// Counter Animation
+const countElements = document.querySelectorAll('.count-up');
+const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            let current = 0;
+            const step = Math.max(1, Math.floor(target / 60));
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                el.textContent = current + suffix;
+            }, 20);
+            countObserver.unobserve(el);
+        }
+    });
+}, { threshold: 0.5 });
+countElements.forEach(el => countObserver.observe(el));
+
+// Navbar scroll effect
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        nav.classList.add('nav-scrolled');
+    } else {
+        nav.classList.remove('nav-scrolled');
+    }
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+
+// Star animations on review cards
+const starContainers = document.querySelectorAll('.reveal.card-hover .flex.text-yellow-400');
+const starObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.material-icons').forEach(star => {
+                star.classList.add('star-animate');
+            });
+            starObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+starContainers.forEach(el => starObserver.observe(el));
+
+// Parallax effect on hero background
+const heroImg = document.querySelector('section.relative img');
+window.addEventListener('scroll', () => {
+    if (window.scrollY < window.innerHeight) {
+        heroImg.style.transform = `scale(1.1) translateY(${window.scrollY * 0.3}px)`;
+    }
+});
+</script>
 </body></html>
